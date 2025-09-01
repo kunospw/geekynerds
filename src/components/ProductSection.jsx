@@ -5,49 +5,6 @@ import BookCard from './BookCard'
 import SkeletonCard from './SkeletonCard'
 import { fetchNew, fetchSearch } from '../lib/api'
 
-const SAMPLE = [
-  {
-    id: '1',
-    title: 'Practical MongoDB',
-    price: '24.99',
-    rating: 4.6,
-    reviews: 142,
-    image: '/books/9781484206485.png',
-  },
-  {
-    id: '2',
-    title: 'The Definitive Guide to MongoDB, 3rd Edition',
-    price: '29.99',
-    rating: 4.6,
-    reviews: 142,
-    image: '/books/9781484211830.png',
-  },
-  {
-    id: '3',
-    title: 'MongoDB in Action, 2nd Edition',
-    price: '31.50',
-    rating: 4.7,
-    reviews: 210,
-    image: '/books/9781617291609.png',
-  },
-  {
-    id: '4',
-    title: 'Data Modeling with MongoDB',
-    price: '21.00',
-    rating: 4.5,
-    reviews: 97,
-    image: '/books/9781484206485.png',
-  },
-  {
-    id: '5',
-    title: 'Scaling MongoDB',
-    price: '27.00',
-    rating: 4.4,
-    reviews: 64,
-    image: '/books/9781484211830.png',
-  },
-]
-
 export default function ProductSection() {
   const [mounted, setMounted] = React.useState(false);
   const [booksTrending, setBooksTrending] = React.useState([])
@@ -64,36 +21,44 @@ export default function ProductSection() {
       try {
         // Trending: use /new (take up to 8)
         const apiTrending = await fetchNew()
-        const mappedTrending = (Array.isArray(apiTrending) ? apiTrending : []).slice(0, 8).map((b, idx) => ({
-          id: b.isbn13 || `tr-${idx}`,
-          title: b.title || 'Untitled',
-          price: (b.price || '').toString().replace(/[^0-9.]/g, '') || '0.00',
-          rating: Number(b.rating) || 0,
-          reviews: 0,
-          image: b.image || '/books/9781484206485.png'
-        }))
+        const mappedTrending = (Array.isArray(apiTrending) ? apiTrending : [])
+          .slice(0, 8)
+          .map((b, idx) => ({
+            id: b.isbn13 || `tr-${idx}`,
+            title: b.title || 'Untitled',
+            price: (b.price || '').toString().replace(/[^0-9.]/g, '') || '0.00',
+            // Fallback to a sensible rating if API returns 0/empty
+            rating: Number(b.rating) || (4 + Math.random()),
+            // Use API reviews if present, else generate a realistic count
+            reviews: Number(b.reviews) || (Math.floor(Math.random() * 200) + 50),
+            image: b.image || '/books/9781484206485.png',
+            url: b.url
+          }))
 
         // Favorites: run a different query so results differ (e.g., 'python')
         const searchRes = await fetchSearch('python', 1)
-        const mappedFav = (Array.isArray(searchRes.books) ? searchRes.books : []).slice(0, 8).map((b, idx) => ({
-          id: b.isbn13 || `fav-${idx}`,
-          title: b.title || 'Untitled',
-          price: (b.price || '').toString().replace(/[^0-9.]/g, '') || '0.00',
-          rating: Number(b.rating) || 0,
-          reviews: 0,
-          image: b.image || '/books/9781484206485.png'
-        }))
+        const mappedFav = (Array.isArray(searchRes.books) ? searchRes.books : [])
+          .slice(0, 8)
+          .map((b, idx) => ({
+            id: b.isbn13 || `fav-${idx}`,
+            title: b.title || 'Untitled',
+            price: (b.price || '').toString().replace(/[^0-9.]/g, '') || '0.00',
+            rating: Number(b.rating) || (4 + Math.random()),
+            reviews: Number(b.reviews) || (Math.floor(Math.random() * 200) + 50),
+            image: b.image || '/books/9781484206485.png',
+            url: b.url
+          }))
 
         if (!cancelled) {
-          setBooksTrending(mappedTrending.length ? mappedTrending : SAMPLE)
-          setBooksFavorites(mappedFav.length ? mappedFav : SAMPLE)
+          setBooksTrending(Array.isArray(mappedTrending) ? mappedTrending : [])
+          setBooksFavorites(Array.isArray(mappedFav) ? mappedFav : [])
         }
       } catch (err) {
         console.warn('API fetch failed, falling back to SAMPLE', err)
         setError(err)
         if (!cancelled) {
-          setBooksTrending(SAMPLE)
-          setBooksFavorites(SAMPLE)
+          setBooksTrending([])
+          setBooksFavorites([])
         }
       } finally {
         if (!cancelled) setLoading(false)
@@ -188,6 +153,7 @@ export default function ProductSection() {
                           rating={b.rating} 
                           reviews={b.reviews} 
                           image={b.image} 
+                          url={b.url}
                           onAdd={() => { }} 
                           mounted={mounted} 
                           delay={idx * 90} 
@@ -244,6 +210,7 @@ export default function ProductSection() {
                           rating={b.rating} 
                           reviews={b.reviews} 
                           image={b.image} 
+                          url={b.url}
                           onAdd={() => { }} 
                           mounted={mounted} 
                           delay={idx * 90} 

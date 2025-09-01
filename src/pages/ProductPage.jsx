@@ -82,12 +82,14 @@ export default function ProductPage() {
 
         if (searchQuery.trim()) {
           // Search by query: fetch the API page(s) that cover this app page
+          // Convert spaces to hyphens for better API compatibility
+          const normalizedQuery = searchQuery.trim().replace(/\s+/g, '-')
           const apiPageStart = Math.floor(startIndex / API_PAGE_SIZE) + 1
-          const p1 = await fetchSearch(searchQuery.trim(), apiPageStart)
+          const p1 = await fetchSearch(normalizedQuery, apiPageStart)
           let combined = Array.isArray(p1.books) ? p1.books.slice() : []
           // Fetch next API page if we need more items to assemble one app page
           if (combined.length < (startIndex % API_PAGE_SIZE) + PREFERRED_PAGE_SIZE) {
-            const p2 = await fetchSearch(searchQuery.trim(), apiPageStart + 1)
+            const p2 = await fetchSearch(normalizedQuery, apiPageStart + 1)
             if (Array.isArray(p2.books)) combined = combined.concat(p2.books)
           }
 
@@ -99,37 +101,42 @@ export default function ProductPage() {
             total: p1.total || (pageSlice.length + (apiPageStart - 1) * API_PAGE_SIZE),
             page: appPage
           }
-        } else if (selectedCategory === 'all') {
-          // Show new books for "all" category — client-side paginate
-          const newBooks = await fetchNew()
-          const pageSlice = newBooks.slice(startIndex, startIndex + PREFERRED_PAGE_SIZE)
-          result = {
-            books: pageSlice,
-            total: newBooks.length,
-            page: appPage
-          }
         } else {
-          // Search by category (mapped to a query)
-          const categoryData = CATEGORIES.find(c => c.id === selectedCategory)
-          if (categoryData && categoryData.query) {
-            const apiPageStart = Math.floor(startIndex / API_PAGE_SIZE) + 1
-            const p1 = await fetchSearch(categoryData.query, apiPageStart)
-            let combined = Array.isArray(p1.books) ? p1.books.slice() : []
-            if (combined.length < (startIndex % API_PAGE_SIZE) + PREFERRED_PAGE_SIZE) {
-              const p2 = await fetchSearch(categoryData.query, apiPageStart + 1)
-              if (Array.isArray(p2.books)) combined = combined.concat(p2.books)
-            }
-
-            const localStart = startIndex - (apiPageStart - 1) * API_PAGE_SIZE
-            const pageSlice = combined.slice(localStart, localStart + PREFERRED_PAGE_SIZE)
-
+          // No search query - show books based on selected category
+          if (selectedCategory === 'all') {
+            // Show new books for "all" category — client-side paginate
+            const newBooks = await fetchNew()
+            const pageSlice = newBooks.slice(startIndex, startIndex + PREFERRED_PAGE_SIZE)
             result = {
               books: pageSlice,
-              total: p1.total || (pageSlice.length + (apiPageStart - 1) * API_PAGE_SIZE),
+              total: newBooks.length,
               page: appPage
             }
           } else {
-            result = { books: [], total: 0, page: appPage }
+            // Search by category (mapped to a query)
+            const categoryData = CATEGORIES.find(c => c.id === selectedCategory)
+            if (categoryData && categoryData.query) {
+              // Convert spaces to hyphens for better API compatibility
+              const normalizedCategoryQuery = categoryData.query.replace(/\s+/g, '-')
+              const apiPageStart = Math.floor(startIndex / API_PAGE_SIZE) + 1
+              const p1 = await fetchSearch(normalizedCategoryQuery, apiPageStart)
+              let combined = Array.isArray(p1.books) ? p1.books.slice() : []
+              if (combined.length < (startIndex % API_PAGE_SIZE) + PREFERRED_PAGE_SIZE) {
+                const p2 = await fetchSearch(normalizedCategoryQuery, apiPageStart + 1)
+                if (Array.isArray(p2.books)) combined = combined.concat(p2.books)
+            }
+
+              const localStart = startIndex - (apiPageStart - 1) * API_PAGE_SIZE
+              const pageSlice = combined.slice(localStart, localStart + PREFERRED_PAGE_SIZE)
+
+              result = {
+                books: pageSlice,
+                total: p1.total || (pageSlice.length + (apiPageStart - 1) * API_PAGE_SIZE),
+                page: appPage
+              }
+            } else {
+              result = { books: [], total: 0, page: appPage }
+            }
           }
         }
         
@@ -153,20 +160,9 @@ export default function ProductPage() {
       } catch (err) {
         console.error('Failed to load books:', err)
         setError(err.message)
-        
-        // Fallback to some sample data
-        const fallbackBooks = Array.from({ length: 12 }, (_, i) => ({
-          id: `fallback-${i}`,
-          title: `Sample Book ${i + 1}`,
-          price: `${(20 + Math.random() * 40).toFixed(2)}`,
-          rating: 4.0 + Math.random() * 1,
-          reviews: Math.floor(Math.random() * 200) + 50,
-          image: '/books/9781484206485.png',
-          url: undefined
-        }))
-        
-        setBooks(fallbackBooks)
-        setTotalResults(fallbackBooks.length)
+        // Strict mode: do not use fallback/sample data
+        setBooks([])
+        setTotalResults(0)
       } finally {
         setLoading(false)
       }
@@ -195,7 +191,9 @@ export default function ProductPage() {
   // Handle search
   const handleSearch = (e) => {
     e.preventDefault()
-    updateURL({ q: searchQuery, category: 'all', page: 1 })
+    // Convert spaces to hyphens for better API compatibility
+    const normalizedQuery = searchQuery.trim().replace(/\s+/g, '-')
+    updateURL({ q: normalizedQuery, category: 'all', page: 1 })
   }
 
   // Handle category change
@@ -379,8 +377,8 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Error State */}
-        {error && !loading && (
+        {/* Error State - only show if there's an error and no books loaded */}
+        {error && !loading && books.length === 0 && (
           <div className="text-center py-12">
             <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
               <p className="text-red-700 mb-4">Failed to load books</p>
@@ -435,8 +433,8 @@ export default function ProductPage() {
                 </div>
               ))}
             </div>
-          ) : (
-            // Empty state
+          ) : !error ? (
+            // Empty state - only show when there's no error
             <div className="text-center py-16">
               <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
                 <FiSearch className="w-12 h-12 text-gray-400" />
@@ -445,7 +443,9 @@ export default function ProductPage() {
               <p className="text-gray-600 mb-6">
                 {searchQuery 
                   ? `No results found for "${searchQuery}". Try adjusting your search terms.`
-                  : 'No books available in this category.'
+                  : selectedCategory === 'all' 
+                    ? 'No books available at the moment. Please try again later.'
+                    : 'No books available in this category.'
                 }
               </p>
               <button
@@ -459,7 +459,7 @@ export default function ProductPage() {
                 Browse All Books
               </button>
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Pagination */}
