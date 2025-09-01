@@ -3,7 +3,7 @@ import Logo from '../assets/logo.png'
 
 export default function WhyGeekyNerds() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {/* Left: large logo - responsive sizing */}

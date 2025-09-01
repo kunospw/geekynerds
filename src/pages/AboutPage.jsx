@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FiTarget, FiBook, FiUsers, FiStar, FiArrowRight, FiCode, FiTrendingUp, FiHeart } from 'react-icons/fi'
 import { BiCodeAlt, BiData, BiNetworkChart } from 'react-icons/bi'
+import Logo from '../assets/logo.png'
 import Footer from '../components/Footer'
 
 const About = () => {
@@ -71,7 +72,7 @@ const About = () => {
           
           <div className="relative flex justify-center mb-8">
             <img 
-              src="/logo.png" 
+              src={Logo} 
               alt="GeekyNerds logo" 
               className="w-32 md:w-48 lg:w-64 xl:w-80 object-contain floating-animation transform transition-transform duration-700 hover:-translate-y-2 hover:scale-105 cursor-pointer" 
             />

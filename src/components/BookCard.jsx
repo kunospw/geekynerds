@@ -153,7 +153,7 @@ function CartControls({ id, title, price, image, onAddCallback }) {
 
   if (qty > 0) {
     return (
-      <div className="inline-flex items-center gap-2 bg-white/80 rounded-lg p-1 shadow-sm">
+      <div className="inline-flex items-center gap-2 mt-1 bg-white/80 rounded-lg p-1 shadow-sm">
         <button onClick={dec} className="w-8 h-8 rounded-md bg-white border border-white/60 text-[#58a12b] font-bold flex items-center justify-center">−</button>
         <div className="px-3 py-1 bg-transparent rounded-md font-semibold text-neutral-900">{qty}</div>
         <button onClick={inc} className="w-8 h-8 rounded-md bg-[#7bce47] text-white font-bold flex items-center justify-center">+</button>

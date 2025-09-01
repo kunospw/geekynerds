@@ -118,12 +118,12 @@ export default function ProductSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-900 leading-tight">
             Browse by <span className="text-gradient">Category</span>
           </h2>
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className="mt-2 text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
             Skip the noise. Jump straight into the topics you love.
           </p>
 
           {/* Responsive Category Pills */}
-          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap mt-10 sm:mt-12 md:mt-16 px-4">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap mt-2 sm:mt-2 md:mt-4 px-4">
             {CATEGORIES.map((c, i) => (
               <Link 
                 key={c.id} 
@@ -138,7 +138,7 @@ export default function ProductSection() {
         </div>
 
         {/* Trending Section */}
-        <div className="mt-24 sm:mt-28 md:mt-32 lg:mt-36">
+        <div className="mt-2 sm:mt-4 md:mt-8 lg:mt-10">
           <div className="flex items-center justify-between mb-10 sm:mb-12 md:mb-16">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900">
               Trending <span className="text-gradient">Now</span>
@@ -155,7 +155,7 @@ export default function ProductSection() {
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
               <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 py-2 px-2 sm:px-4 md:px-6">
+                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (
@@ -188,7 +188,7 @@ export default function ProductSection() {
         </div>
 
         {/* Favorites Section */}
-        <div className="mt-28 sm:mt-32 md:mt-36 lg:mt-40">
+        <div className="mt-2 sm:mt-4 md:mt-8 lg:mt-10">
           <div className="flex items-center justify-between mb-10 sm:mb-12 md:mb-16">
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900">
               Geek's <span className="text-gradient">Favorite</span>
@@ -205,7 +205,7 @@ export default function ProductSection() {
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
               <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 py-2 px-2 sm:px-4 md:px-6">
+                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (
