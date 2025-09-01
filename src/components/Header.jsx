@@ -102,7 +102,7 @@ const Header = ({ onNavigate }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <div className="w-full max-w-[360px] sm:max-w-[430px] md:max-w-none mx-auto px-4 sm:px-6 lg:px-8 mt-4 flex items-center justify-between overflow-hidden">
+                <div className="w-full max-w-[360px] sm:max-w-[430px] md:max-w-none mx-auto px-4 sm:px-6 lg:px-8 mt-4 flex items-center justify-between">
                     <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
                         <img src={Logo} className="h-8 transition-transform duration-300 group-hover:scale-110" alt="GeekyNerds Logo" />
                         <span className="logo-text self-center text-2xl font-bold whitespace-nowrap text-gradient hidden sm:inline">GeekyNerds</span>

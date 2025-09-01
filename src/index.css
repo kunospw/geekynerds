@@ -609,6 +609,17 @@ section + section {
   }
 }
 
+/* Desktop: Allow cart badge to be visible */
+@media (min-width: 641px) {
+  .navbar-header > div {
+    overflow: visible;
+  }
+  
+  #navbar > div {
+    overflow: visible;
+  }
+}
+
 /* Specific width constraints for very small screens */
 @media (max-width: 360px) {
   .navbar-header > div {
