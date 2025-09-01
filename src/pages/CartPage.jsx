@@ -73,7 +73,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="mt-4 min-h-screen bg-gradient-to-br from-[#f8fdf6] to-[#e2f4d7]" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+    <div className="mt-8 min-h-screen bg-gradient-to-br from-[#f8fdf6] to-[#e2f4d7]" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         <h2 className="text-xl md:text-2xl font-extrabold text-neutral-900 mb-6 text-left">Shopping Cart</h2>
 
