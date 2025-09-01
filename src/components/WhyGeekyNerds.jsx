@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function WhyGeekyNerds() {
   return (
@@ -31,12 +32,19 @@ export default function WhyGeekyNerds() {
               reviews, and keeps everything simple so you can learn faster without the noise.
             </p>
 
-            <a 
-              href="/about" 
+            <Link
+              to="/about" 
+              onClick={() => {
+                try {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                } catch (e) {
+                  try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+                }
+              }}
               className="mt-8 sm:mt-10 md:mt-12 inline-flex items-center rounded-full bg-[#7bce47] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold text-white hover:brightness-95 transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg touch-target"
             >
               Learn More <span className="ml-2 sm:ml-3 text-xl sm:text-2xl leading-none">›</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

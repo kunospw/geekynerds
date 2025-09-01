@@ -9,6 +9,13 @@ const About = () => {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // Ensure the page is scrolled to top when this route mounts
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (e) {
+      // ignore in non-browser environments
+    }
+
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false)

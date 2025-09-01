@@ -106,7 +106,7 @@ export default function ProductSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#e2f4d7] via-[#d6f5bf] to-[#c9ebc9] py-20">
+    <section className="relative overflow-visible bg-gradient-to-br from-[#e2f4d7] via-[#d6f5bf] to-[#c9ebc9] py-20">
       {/* Responsive floating decorative elements */}
       <div className="absolute top-4 right-4 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 rounded-full bg-[#7bce47] opacity-20 floating-animation"></div>
       <div className="absolute bottom-8 left-8 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full bg-[#91e2ce] opacity-30 floating-animation-delayed"></div>
@@ -128,6 +128,13 @@ export default function ProductSection() {
               <Link 
                 key={c.id} 
                 to={`/products?category=${encodeURIComponent(c.id)}`} 
+                onClick={() => {
+                  try {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  } catch (e) {
+                    try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+                  }
+                }}
                 className={`pill-fill px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 rounded-full bg-white border border-[#91e2ce] text-sm sm:text-base md:text-lg font-semibold transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-md touch-target`} 
                 style={{ transitionDelay: `${120 + i * 40}ms` }}
               >
@@ -145,6 +152,13 @@ export default function ProductSection() {
             </h3>
             <Link 
               to="/products" 
+              onClick={() => {
+                try {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                } catch (e) {
+                  try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+                }
+              }}
               className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-base sm:text-lg md:text-xl hover:underline"
             >
               See All
@@ -154,8 +168,8 @@ export default function ProductSection() {
           {/* Responsive Carousel Container */}
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
-              <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6">
+              <div className="overflow-x-auto scroll-smooth hide-scrollbar" style={{ overflowY: 'visible' }}>
+                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6 py-4">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (
@@ -195,6 +209,13 @@ export default function ProductSection() {
             </h3>
             <Link 
               to="/products" 
+              onClick={() => {
+                try {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                } catch (e) {
+                  try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+                }
+              }}
               className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-base sm:text-lg md:text-xl hover:underline"
             >
               See All
@@ -204,8 +225,8 @@ export default function ProductSection() {
           {/* Responsive Carousel Container */}
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
-              <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6">
+              <div className="overflow-x-auto scroll-smooth hide-scrollbar" style={{ overflowY: 'visible' }}>
+                <div className="flex gap-8 sm:gap-2 md:gap-4 lg:gap-8 px-2 sm:px-4 md:px-6 py-4">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (

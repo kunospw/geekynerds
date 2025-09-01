@@ -40,6 +40,14 @@ const Header = ({ onNavigate }) => {
         } else {
             navigate('/products')
         }
+        // Scroll to top after navigation
+        setTimeout(() => {
+            try {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+            } catch (e) {
+                try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+            }
+        }, 100)
         // Close mobile search if open
         setMobileSearchOpen(false)
     }
@@ -90,6 +98,16 @@ const Header = ({ onNavigate }) => {
             window.removeEventListener('cart:changed', onCartChanged)
         }
     }, [])
+
+    // Helper function to scroll to top when navigating
+    const scrollToTop = () => {
+        try {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        } catch (e) {
+            // fallback for older browsers
+            try { window.scrollTo(0, 0) } catch (err) { /* ignore */ }
+        }
+    }
 
     return (
         <>
@@ -150,6 +168,7 @@ const Header = ({ onNavigate }) => {
                         <nav className="hidden md:flex items-center space-x-8">
                             <NavLink 
                                 to="/" 
+                                onClick={scrollToTop}
                                 className={({ isActive }) => 
                                     `font-medium transition-all duration-300 hover:text-[#7bce47] ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -160,6 +179,7 @@ const Header = ({ onNavigate }) => {
                             </NavLink>
                             <NavLink 
                                 to="/products" 
+                                onClick={scrollToTop}
                                 className={({ isActive }) => 
                                     `font-medium transition-all duration-300 hover:text-[#7bce47] ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -170,6 +190,7 @@ const Header = ({ onNavigate }) => {
                             </NavLink>
                             <NavLink 
                                 to="/about" 
+                                onClick={scrollToTop}
                                 className={({ isActive }) => 
                                     `font-medium transition-all duration-300 hover:text-[#7bce47] ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -181,7 +202,10 @@ const Header = ({ onNavigate }) => {
                         </nav>
 
                         {/* cart icon */}
-                        <button onClick={() => navigate('/cart')} className="hidden md:inline-flex items-center p-2 rounded-md text-green-600 hover:text-green-800 focus:outline-none transition-all duration-300 hover:scale-110 relative" aria-label="Open cart">
+                        <button onClick={() => {
+                            navigate('/cart')
+                            scrollToTop()
+                        }} className="hidden md:inline-flex items-center p-2 rounded-md text-green-600 hover:text-green-800 focus:outline-none transition-all duration-300 hover:scale-110 relative" aria-label="Open cart">
                             <FiShoppingCart className="w-6 h-6" />
                             {cartCount > 0 && (
                                 <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold leading-none text-white bg-[#58a12b] rounded-full">
@@ -191,7 +215,10 @@ const Header = ({ onNavigate }) => {
                         </button>
 
                         {/* Mobile cart icon */}
-                        <button onClick={() => navigate('/cart')} className="inline-flex md:hidden items-center p-2 rounded-md text-green-600 hover:text-green-800 focus:outline-none transition-all duration-300 hover:scale-110 relative" aria-label="Open cart">
+                        <button onClick={() => {
+                            navigate('/cart')
+                            scrollToTop()
+                        }} className="inline-flex md:hidden items-center p-2 rounded-md text-green-600 hover:text-green-800 focus:outline-none transition-all duration-300 hover:scale-110 relative" aria-label="Open cart">
                             <FiShoppingCart className="w-6 h-6" />
                             {cartCount > 0 && (
                                 <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold leading-none text-white bg-[#58a12b] rounded-full">
@@ -235,7 +262,10 @@ const Header = ({ onNavigate }) => {
                         <nav className="px-4 py-6 space-y-4">
                             <NavLink 
                                 to="/" 
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => {
+                                    setMobileMenuOpen(false)
+                                    scrollToTop()
+                                }}
                                 className={({ isActive }) => 
                                     `block py-2 px-3 font-medium transition-all duration-300 hover:text-[#7bce47] text-left ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -246,7 +276,10 @@ const Header = ({ onNavigate }) => {
                             </NavLink>
                             <NavLink 
                                 to="/products" 
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => {
+                                    setMobileMenuOpen(false)
+                                    scrollToTop()
+                                }}
                                 className={({ isActive }) => 
                                     `block py-2 px-3 font-medium transition-all duration-300 hover:text-[#7bce47] text-left ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -257,7 +290,10 @@ const Header = ({ onNavigate }) => {
                             </NavLink>
                             <NavLink 
                                 to="/about" 
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => {
+                                    setMobileMenuOpen(false)
+                                    scrollToTop()
+                                }}
                                 className={({ isActive }) => 
                                     `block py-2 px-3 font-medium transition-all duration-300 hover:text-[#7bce47] text-left ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
@@ -268,7 +304,10 @@ const Header = ({ onNavigate }) => {
                             </NavLink>
                             <NavLink 
                                 to="/cart" 
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => {
+                                    setMobileMenuOpen(false)
+                                    scrollToTop()
+                                }}
                                 className={({ isActive }) => 
                                     `block py-2 px-3 font-medium transition-all duration-300 hover:text-[#7bce47] text-left ${
                                         isActive ? 'text-[#58a12b]' : 'text-gray-700'
