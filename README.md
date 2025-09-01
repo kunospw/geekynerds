@@ -28,7 +28,7 @@ A modern, responsive e-commerce platform for tech books and programming resource
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/geekynerds.git
+   git clone https://github.com/kunospw/geekynerds.git
    cd geekynerds
    ```
 
@@ -143,4 +143,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Built with ❤️ by [Your Name](https://github.com/your-username)
+Built with ❤️ by [kunospw](https://github.com/kunospw)
