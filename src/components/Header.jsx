@@ -102,14 +102,14 @@ const Header = ({ onNavigate }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <div className="w-full max-w-[360px] sm:max-w-[430px] md:max-w-none mx-auto px-4 sm:px-6 lg:px-8 mt-4 flex items-center justify-between">
+                <div className="w-full max-w-[360px] sm:max-w-[430px] md:max-w-none mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-3 sm:py-4">
                     <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
                         <img src={Logo} className="h-8 transition-transform duration-300 group-hover:scale-110" alt="GeekyNerds Logo" />
                         <span className="logo-text self-center text-2xl font-bold whitespace-nowrap text-gradient hidden sm:inline">GeekyNerds</span>
                     </NavLink>
 
                     {/* compact center search for md+ */}
-                    <div className="hidden md:flex flex-1 justify-center px-4">
+                    <div className="hidden md:flex flex-1 justify-center px-6 lg:px-8">
                         <div className="w-full max-w-xs">
                             <form onSubmit={handleSearch}>
                                 <label htmlFor="site-search" className="sr-only">Search for books</label>
@@ -135,19 +135,19 @@ const Header = ({ onNavigate }) => {
                         </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-6 lg:space-x-8">
                         {/* mobile search + toggle */}
-                        <button onClick={toggleMobileSearch} className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none" aria-label="Open search">
+                        <button onClick={toggleMobileSearch} className="inline-flex items-center p-3 w-12 h-12 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none" aria-label="Open search">
                             <FiSearch className="w-5 h-5" />
                         </button>
 
-                        <button onClick={toggleMobileMenu} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded={mobileMenuOpen}>
+                        <button onClick={toggleMobileMenu} type="button" className="inline-flex items-center p-3 w-12 h-12 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded={mobileMenuOpen}>
                             <span className="sr-only">Open main menu</span>
                             <FiMenu className="w-5 h-5" aria-hidden />
                         </button>
 
                         {/* Navigation Links */}
-                        <nav className="hidden md:flex items-center space-x-6">
+                        <nav className="hidden md:flex items-center space-x-8">
                             <NavLink 
                                 to="/" 
                                 className={({ isActive }) => 

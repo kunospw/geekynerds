@@ -618,6 +618,22 @@ section + section {
   #navbar > div {
     overflow: visible;
   }
+  
+  /* Better header spacing on desktop */
+  .navbar-header > div {
+    min-height: 80px;
+  }
+  
+  /* Improve navigation link spacing */
+  .navbar-header nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .navbar-header nav a:hover {
+    background-color: rgba(123, 206, 71, 0.1);
+  }
 }
 
 /* Specific width constraints for very small screens */
