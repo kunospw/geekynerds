@@ -1,0 +1,521 @@
+@import "tailwindcss";
+
+@theme {
+  /* Text Colors */
+  --color-text-50: #eff9eb;
+  --color-text-100: #dff4d7;
+  --color-text-200: #bfe9af;
+  --color-text-300: #9fdd88;
+  --color-text-400: #7ed260;
+  --color-text-500: #5ec738;
+  --color-text-600: #4b9f2d;
+  --color-text-700: #397722;
+  --color-text-800: #265016;
+  --color-text-900: #13280b;
+  --color-text-950: #091406;
+
+  /* Background Colors */
+  --color-background-50: #f1f9eb;
+  --color-background-100: #e3f4d7;
+  --color-background-200: #c6e9af;
+  --color-background-300: #aadd88;
+  --color-background-400: #8ed260;
+  --color-background-500: #71c738;
+  --color-background-600: #5b9f2d;
+  --color-background-700: #447722;
+  --color-background-800: #2d5016;
+  --color-background-900: #17280b;
+  --color-background-950: #0b1406;
+
+  /* Primary Colors */
+  --color-primary-50: #f1faeb;
+  --color-primary-100: #e2f4d7;
+  --color-primary-200: #c5eaae;
+  --color-primary-300: #a8df86;
+  --color-primary-400: #8bd45e;
+  --color-primary-500: #6ec936;
+  --color-primary-600: #58a12b;
+  --color-primary-700: #427920;
+  --color-primary-800: #2c5115;
+  --color-primary-900: #16280b;
+  --color-primary-950: #0b1405;
+
+  /* Secondary Colors */
+  --color-secondary-50: #ebfaf6;
+  --color-secondary-100: #d7f4ed;
+  --color-secondary-200: #aeeadb;
+  --color-secondary-300: #86dfc9;
+  --color-secondary-400: #5ed4b7;
+  --color-secondary-500: #36c9a4;
+  --color-secondary-600: #2ba184;
+  --color-secondary-700: #207963;
+  --color-secondary-800: #155142;
+  --color-secondary-900: #0b2821;
+  --color-secondary-950: #051410;
+
+  /* Accent Colors */
+  --color-accent-50: #ebf6fa;
+  --color-accent-100: #d7edf4;
+  --color-accent-200: #aedbea;
+  --color-accent-300: #86c9df;
+  --color-accent-400: #5eb7d4;
+  --color-accent-500: #36a4c9;
+  --color-accent-600: #2b84a1;
+  --color-accent-700: #206379;
+  --color-accent-800: #154251;
+  --color-accent-900: #0b2128;
+  --color-accent-950: #051014;
+}
+
+/* Navbar theming using CSS variables from the theme */
+:root {
+  --primary: var(--color-primary-600);
+  --background: #f3f9ee; /* default page background */
+}
+
+.navbar-header {
+  background-color: transparent;
+}
+
+.navbar-scrolled {
+  /* use background variable for the navbar background when scrolled */
+  background-color: var(--color-background-950, #ffffff);
+}
+
+.navbar-header .logo-text {
+  color: var(--color-primary-500);
+}
+
+
+.navbar-scrolled .nav-links a:hover,
+.navbar-scrolled .nav-links a:focus {
+  color: var(--primary);
+}
+
+/* Logo hover */
+.logo-text:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* Category pill fill animation: smooth left-to-right fill on hover */
+.pill-fill {
+  /* keep spacing from Tailwind; this only controls visual fill */
+  background-image: linear-gradient(90deg, #91e2ce 0%, #91e2ce 100%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  transition: background-size 320ms cubic-bezier(.2,.9,.2,1), color 280ms ease, border-color 280ms ease, transform 200ms ease;
+  color: #91e2ce; /* default text color */
+}
+.pill-fill:hover {
+  background-size: 100% 100%;
+  color: #ffffff; /* text becomes white when filled */
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Search input focus uses primary color */
+.search-input {
+  border: 1px solid rgba(0,0,0,0.12);
+  background-clip: padding-box;
+}
+
+.search-input:focus,
+.search-input:focus-visible {
+  border-color: var(--primary);
+  outline: 2px solid rgba(0,0,0,0); /* reset default */
+  box-shadow: 0 0 0 4px rgba(88,161,43,0.10); /* subtle glow using primary approx */
+}
+
+/* Full-screen layout reset */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--background);
+}
+
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    /* Text Colors - Dark */
+    --color-text-50: #0a1406;
+    --color-text-100: #14270c;
+    --color-text-200: #274f17;
+    --color-text-300: #3b7623;
+    --color-text-400: #4e9d2f;
+    --color-text-500: #62c43b;
+    --color-text-600: #81d062;
+    --color-text-700: #a1dc89;
+    --color-text-800: #c0e8b0;
+    --color-text-900: #e0f3d8;
+    --color-text-950: #eff9eb;
+
+    /* Background Colors - Dark */
+    --color-background-50: #0b1405;
+    --color-background-100: #17290a;
+    --color-background-200: #2e5214;
+    --color-background-300: #457a1f;
+    --color-background-400: #5ca329;
+    --color-background-500: #73cc33;
+    --color-background-600: #8fd65c;
+    --color-background-700: #abe085;
+    --color-background-800: #c7ebad;
+    --color-background-900: #e3f5d6;
+    --color-background-950: #f1faeb;
+
+    /* Primary Colors - Dark */
+    --color-primary-50: #0b1405;
+    --color-primary-100: #16280b;
+    --color-primary-200: #2c5115;
+    --color-primary-300: #427920;
+    --color-primary-400: #58a12b;
+    --color-primary-500: #6ec936;
+    --color-primary-600: #8bd45e;
+    --color-primary-700: #a8df86;
+    --color-primary-800: #c5eaae;
+    --color-primary-900: #e2f4d7;
+    --color-primary-950: #f1faeb;
+
+    /* Secondary Colors - Dark */
+    --color-secondary-50: #051410;
+    --color-secondary-100: #0b2821;
+    --color-secondary-200: #155142;
+    --color-secondary-300: #207963;
+    --color-secondary-400: #2ba184;
+    --color-secondary-500: #36c9a4;
+    --color-secondary-600: #5ed4b7;
+    --color-secondary-700: #86dfc9;
+    --color-secondary-800: #aeeadb;
+    --color-secondary-900: #d7f4ed;
+    --color-secondary-950: #ebfaf6;
+
+    /* Accent Colors - Dark */
+    --color-accent-50: #051014;
+    --color-accent-100: #0b2128;
+    --color-accent-200: #154251;
+    --color-accent-300: #206379;
+    --color-accent-400: #2b84a1;
+    --color-accent-500: #36a4c9;
+    --color-accent-600: #5eb7d4;
+    --color-accent-700: #86c9df;
+    --color-accent-800: #aedbea;
+    --color-accent-900: #d7edf4;
+    --color-accent-950: #ebf6fa;
+  }
+}
+
+/* Hide scrollbars completely for carousel containers */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modern UI enhancements */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #7bce47 0%, #91e2ce 100%);
+}
+
+.tech-pattern {
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(123, 206, 71, 0.15) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-animation-delayed {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 20px rgba(123, 206, 71, 0.3); }
+  to { box-shadow: 0 0 30px rgba(123, 206, 71, 0.6); }
+}
+
+.card-hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #7bce47, #58a12b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Skeleton loading animations */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Utility: hide scrollbars but keep scrolling enabled */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Modern global scrollbar hide (desktop only)
+   - Keeps scroll functionality intact.
+   - Applies only when a fine pointer (mouse) is present so touch devices retain native scrollbars.
+   - We keep the existing `.hide-scrollbar` utility for targeted containers. */
+@media (pointer: fine) {
+  html, body, #root, .hide-scrollbar, .overflow-x-auto {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #root::-webkit-scrollbar,
+  .hide-scrollbar::-webkit-scrollbar,
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+  }
+}
+
+/* Enhanced responsive utilities */
+.text-responsive-xs { font-size: clamp(0.75rem, 2vw, 0.875rem); }
+.text-responsive-sm { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+.text-responsive-base { font-size: clamp(1rem, 3vw, 1.125rem); }
+.text-responsive-lg { font-size: clamp(1.125rem, 3.5vw, 1.25rem); }
+.text-responsive-xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+.text-responsive-2xl { font-size: clamp(1.5rem, 5vw, 2rem); }
+.text-responsive-3xl { font-size: clamp(1.875rem, 6vw, 2.5rem); }
+.text-responsive-4xl { font-size: clamp(2.25rem, 7vw, 3rem); }
+.text-responsive-5xl { font-size: clamp(3rem, 8vw, 4rem); }
+.text-responsive-6xl { font-size: clamp(3.75rem, 9vw, 5rem); }
+.text-responsive-7xl { font-size: clamp(4.5rem, 10vw, 6rem); }
+.text-responsive-8xl { font-size: clamp(6rem, 12vw, 8rem); }
+
+/* Fluid spacing utilities */
+.space-y-fluid > * + * { margin-top: clamp(0.5rem, 2vw, 1.5rem); }
+.space-x-fluid > * + * { margin-left: clamp(0.5rem, 2vw, 1.5rem); }
+.gap-fluid { gap: clamp(0.75rem, 2.5vw, 1.5rem); }
+.p-fluid { padding: clamp(1rem, 3vw, 2rem); }
+.px-fluid { padding-left: clamp(1rem, 3vw, 2rem); padding-right: clamp(1rem, 3vw, 2rem); }
+.py-fluid { padding-top: clamp(1rem, 3vw, 2rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+
+/* Container utilities for better responsive layouts */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+/* Enhanced animations for mobile */
+@media (max-width: 640px) {
+  .floating-animation {
+    animation: float-mobile 4s ease-in-out infinite;
+  }
+  .floating-animation-delayed {
+    animation: float-mobile 6s ease-in-out infinite;
+    animation-delay: -1s;
+  }
+}
+
+@keyframes float-mobile {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Container queries for card layouts */
+@container (max-width: 320px) {
+  .card-container {
+    padding: 0.75rem;
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .pill-fill {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Enhanced responsive breakpoints for ultra-wide screens */
+@media (min-width: 1920px) {
+  .text-responsive-8xl {
+    font-size: clamp(8rem, 15vw, 12rem);
+  }
+  
+  .py-fluid {
+    padding-top: clamp(2rem, 4vw, 4rem);
+    padding-bottom: clamp(2rem, 4vw, 4rem);
+  }
+  
+  .px-fluid {
+    padding-left: clamp(2rem, 4vw, 4rem);
+    padding-right: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .py-fluid {
+    padding-top: clamp(0.75rem, 2vw, 1.5rem);
+    padding-bottom: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  
+  .text-responsive-3xl {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .text-responsive-4xl {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .floating-animation,
+  .floating-animation-delayed {
+    animation-duration: 8s;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .floating-animation,
+  .floating-animation-delayed,
+  .pulse-glow {
+    animation: none;
+  }
+  
+  .card-hover-lift:hover {
+    transform: none;
+  }
+  
+  .pill-fill:hover {
+    transform: none;
+  }
+}
+
+/* Mobile list view card improvements */
+@media (max-width: 768px) {
+  .list-card-mobile {
+    height: 200px !important; /* Force taller height on mobile */
+  }
+  
+  .list-card-mobile .p-4 {
+    padding: 1rem;
+  }
+  
+  .list-card-mobile h4 {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-card-mobile .flex-col {
+    gap: 0.75rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .list-card-mobile {
+    height: 220px !important; /* Even taller on very small screens */
+  }
+  
+  .list-card-mobile .p-4 {
+    padding: 0.875rem;
+  }
+  
+  .list-card-mobile h4 {
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+}

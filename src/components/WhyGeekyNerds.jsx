@@ -1,0 +1,44 @@
+import React from 'react'
+
+export default function WhyGeekyNerds() {
+  return (
+    <section className="py-fluid bg-white">
+      <div className="container mx-auto px-fluid">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+          {/* Left: large logo - responsive sizing */}
+          <div className="flex justify-center md:justify-start order-2 md:order-1">
+            <img
+              src="/logo.png"
+              alt="GeekyNerds logo"
+              className="w-48 h-auto sm:w-56 md:w-64 lg:w-80 xl:w-96 object-contain floating-animation transform transition-transform duration-300 hover:-translate-y-2 hover:scale-105 cursor-pointer"
+            />
+          </div>
+
+          {/* Right: heading, copy, CTA - responsive typography */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left order-1 md:order-2">
+            <div className="leading-none">
+              <div className="text-responsive-3xl sm:text-responsive-4xl md:text-responsive-5xl lg:text-responsive-6xl font-extrabold text-neutral-900 transition-transform duration-300 hover:-translate-y-1 hover:scale-105">
+                Why
+              </div>
+              <div className="mt-2 text-responsive-4xl sm:text-responsive-5xl md:text-responsive-6xl lg:text-responsive-7xl xl:text-responsive-8xl font-extrabold text-[#7bce47] drop-shadow-md leading-tight transition-transform duration-400 hover:-translate-y-2 hover:scale-105">
+                GeekyNerds<span className="text-neutral-900">?</span>
+              </div>
+            </div>
+
+            <p className="mt-6 sm:mt-8 md:mt-10 max-w-xl text-neutral-700 text-responsive-base sm:text-responsive-lg md:text-responsive-xl lg:text-responsive-2xl leading-relaxed">
+              We're more than just an online bookstore. GeekyNerds curates IT reads that matter, pairs them with community
+              reviews, and keeps everything simple so you can learn faster without the noise.
+            </p>
+
+            <a 
+              href="/about" 
+              className="mt-8 sm:mt-10 md:mt-12 inline-flex items-center rounded-full bg-[#7bce47] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-responsive-base sm:text-responsive-lg md:text-responsive-xl font-semibold text-white hover:brightness-95 transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg touch-target"
+            >
+              Learn More <span className="ml-2 sm:ml-3 text-xl sm:text-2xl leading-none">›</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
