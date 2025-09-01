@@ -10,15 +10,17 @@ A modern, responsive e-commerce platform for tech books and programming resource
 - **Real-time Search**: Dynamic search functionality with URL-based state management
 - **Category Filtering**: Filter books by programming languages and tech topics
 - **Modern UI**: Glass morphism effects, smooth animations, and gradient accents
-- **Toast Notifications**: User-friendly feedback for cart actions and checkout
+- **Toast Notifications**: Enhanced user-friendly feedback with smooth animations
 - **Skeleton Loading**: Elegant loading states while fetching data
+- **Mobile-Optimized**: Touch-friendly controls and responsive layouts
+- **Overflow Prevention**: Smart layout management preventing horizontal scrolling
 
 ## 🚀 Tech Stack
 
 - **Frontend**: React 18 + Vite
 - **Routing**: React Router DOM
-- **Styling**: Tailwind CSS with custom utilities
-- **Animations**: Framer Motion
+- **Styling**: Tailwind CSS with custom utilities and responsive breakpoints
+- **Animations**: Framer Motion + custom CSS animations
 - **Icons**: React Icons (Feather)
 - **API**: itbook.store integration
 - **State Management**: React hooks + localStorage
@@ -54,45 +56,66 @@ src/
 ├── components/          # Reusable UI components
 │   ├── BookCard.jsx    # Product card with cart controls
 │   ├── Header.jsx      # Navigation with search and cart
-│   ├── Toast.jsx       # Notification component
+│   ├── Toast.jsx       # Enhanced notification component
+│   ├── HeroSection.jsx # Landing page hero with book showcase
+│   ├── ProductSection.jsx # Featured products and categories
+│   ├── NewsletterSection.jsx # Email subscription section
+│   ├── WhyGeekyNerds.jsx # About section with branding
+│   ├── Footer.jsx      # Site footer with links and newsletter
 │   └── ...
 ├── pages/              # Route components
-│   ├── LandingPages.jsx # Home page
+│   ├── LandingPages.jsx # Home page with all sections
 │   ├── ProductPage.jsx  # Product listing and search
-│   ├── CartPage.jsx     # Shopping cart
+│   ├── CartPage.jsx     # Enhanced shopping cart
 │   └── AboutPage.jsx    # About page
 ├── lib/                # Utilities and API
 │   ├── api.js          # API wrapper for itbook.store
 │   └── categories.js   # Shared category definitions
-└── assets/             # Static assets
+└── assets/             # Static assets and book covers
 ```
 
 ## 🎯 Key Components
+
+### LandingPages
+- **Hero Section**: Dynamic book showcase with staggered positioning
+- **Product Section**: Trending and favorite books with category pills
+- **WhyGeekyNerds**: Brand story with animated logo
+- **Newsletter**: Email subscription with responsive form
+- **Footer**: Comprehensive site navigation and social links
 
 ### ProductPage
 - Advanced search and filtering
 - Category-based navigation
 - Pagination with smooth scrolling
-- Grid/list view toggle
+- Grid/list view toggle with mobile-optimized heights
 - Skeleton loading states
 
 ### BookCard
-- Responsive grid and list layouts
-- Inline cart controls (Add/+/−)
-- Real-time quantity updates
-- External product link integration
+- **Responsive Layouts**: Grid and list views with mobile-first design
+- **Cart Controls**: Inline quantity management (Add/+/−)
+- **Real-time Updates**: Live cart synchronization
+- **External Links**: Direct product page navigation
+- **Mobile Optimization**: Touch-friendly controls and proper spacing
 
 ### Header
-- Mobile-responsive navigation
-- Integrated search functionality
-- Cart badge with live count updates
-- Mobile menu and search overlays
+- **Responsive Navigation**: Mobile-first design with hamburger menu
+- **Search Integration**: Desktop search bar with mobile overlay
+- **Cart Badge**: Live count updates with proper overflow handling
+- **Mobile Menu**: Stacked navigation with search integration
+- **Smart Spacing**: Adaptive padding and spacing for all screen sizes
 
 ### CartPage
-- Desktop table and mobile card layouts
-- Quantity adjustment controls
-- Order summary calculations
-- Toast-based checkout feedback
+- **Dual Layouts**: Desktop table and mobile card views
+- **Quantity Controls**: Input fields with green focus styling
+- **Order Summary**: Sticky sidebar with enhanced typography
+- **Checkout Flow**: Prototype checkout with success feedback
+- **Responsive Design**: Optimized for all device sizes
+
+### Toast
+- **Enhanced Design**: Gradient backgrounds with icons
+- **Smooth Animations**: Slide-in effects from right
+- **Type Support**: Success and notice variants
+- **Better UX**: Longer duration and improved positioning
 
 ## 🌐 API Integration
 
@@ -104,11 +127,40 @@ The app integrates with the [itbook.store API](https://api.itbook.store) to fetc
 
 ## 📱 Mobile Features
 
-- Stacked navigation menu
-- Touch-friendly cart controls
-- Responsive card layouts
-- Optimized text sizing
-- Hidden scrollbars for modern UI
+- **Responsive Layout**: No horizontal overflow on any screen size
+- **Touch Optimization**: 44px minimum touch targets
+- **Mobile-First Design**: Stacked navigation and card layouts
+- **Smart Spacing**: Adaptive padding and margins
+- **Hidden Scrollbars**: Modern UI with smooth scrolling
+
+## 🎨 Design System
+
+- **Color Palette**: Green-based theme with gradient accents
+- **Typography**: Responsive text scaling with system fonts
+- **Animations**: Smooth hover effects, page transitions, and micro-interactions
+- **Layout**: CSS Grid and Flexbox with Tailwind utilities
+- **Responsive Breakpoints**: Mobile-first approach (360px → 640px → 768px+)
+- **Glass Morphism**: Subtle backdrop blur and transparency effects
+
+## 🔧 Recent Improvements
+
+### Layout & Responsiveness
+- **Fixed Overflow Issues**: Eliminated horizontal scrolling on mobile
+- **Responsive Header**: Dynamic width between 360px-640px, full-width on larger screens
+- **Mobile Optimization**: Book covers scaled appropriately for small screens
+- **Consistent Spacing**: Unified padding and margin system across components
+
+### User Experience
+- **Enhanced Cart Page**: Better typography, spacing, and mobile experience
+- **Improved Toast**: Modern design with smooth animations
+- **Better Navigation**: Enhanced header spacing and hover effects
+- **Mobile Touch**: Larger buttons and better touch targets
+
+### Performance & Accessibility
+- **Overflow Control**: Smart CSS rules preventing layout issues
+- **Focus States**: Green focus rings on form elements
+- **Touch Targets**: Proper sizing for mobile interaction
+- **Smooth Animations**: Optimized transitions and hover effects
 
 ## 🛠️ Available Scripts
 
@@ -118,14 +170,6 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 npm run lint         # Run ESLint
 ```
-
-## 🎨 Design System
-
-- **Colors**: Green-based palette with accent gradients
-- **Typography**: System fonts with responsive scaling
-- **Animations**: Subtle hover effects and page transitions
-- **Layout**: CSS Grid and Flexbox with Tailwind utilities
-- **Theming**: CSS custom properties with dark mode support
 
 ## 📄 License
 
