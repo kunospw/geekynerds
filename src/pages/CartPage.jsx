@@ -73,7 +73,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8fdf6] to-[#e2f4d7]" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+    <div className="mt-4 min-h-screen bg-gradient-to-br from-[#f8fdf6] to-[#e2f4d7]" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         <h2 className="text-xl md:text-2xl font-extrabold text-neutral-900 mb-6 text-left">Shopping Cart</h2>
 
@@ -116,7 +116,7 @@ export default function CartPage() {
                             min={1}
                             value={item.qty}
                             onChange={(e) => updateQty(item.id, e.target.value)}
-                            className="w-20 border rounded p-2 text-sm"
+                            className="w-20 border border-neutral-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                           />
                         </div>
                       </td>
@@ -157,7 +157,7 @@ export default function CartPage() {
                               min={1}
                               value={item.qty}
                               onChange={(e) => updateQty(item.id, e.target.value)}
-                              className="w-16 border rounded p-1 text-sm"
+                              className="w-16 border border-neutral-200 rounded p-1 text-sm focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             />
                           </div>
                           <div className="font-semibold text-sm">{CURRENCY.format((Number(item.price) || 0) * (Number(item.qty) || 0))}</div>

@@ -93,7 +93,7 @@ export default function Hero() {
                 {loading ? (
                     <HeroSkeleton />
                 ) : (
-                    <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:grid-cols-2 flex-1">
+                    <div className="w-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 sm:gap-10 md:gap-12 lg:gap-16 md:grid-cols-2 flex-1">
                         {/* Left: headline + CTA + info */}
                         <div className={`flex flex-col justify-center items-start space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight text-neutral-900">
@@ -133,7 +133,7 @@ export default function Hero() {
                         </div>
 
                         {/* Right: book covers in staggered arrangement - responsive sizing */}
-                        <div className="relative h-[400px] sm:h-[480px] md:h-[520px] lg:h-[600px] xl:h-[700px] flex items-center justify-center mt-8 md:mt-0">
+                        <div className="relative h-[400px] sm:h-[480px] md:h-[520px] lg:h-[600px] xl:h-[700px] flex items-center justify-center mt-8 md:mt-0 overflow-hidden">
                             <div className="relative w-full h-full">
                                 {books.map((book, idx) => {
                                     const isCenter = idx === centerIndex;
@@ -144,10 +144,10 @@ export default function Hero() {
                                     let scale = 0.85;
 
                                     if (idx === 0) {
-                                        // Left book - responsive positioning
-                                        transform = 'translate(-50%, -50%) translateX(-120px) translateY(20px) rotate(-9deg)';
-                                        if (window.innerWidth >= 640) transform = 'translate(-50%, -50%) translateX(-150px) translateY(25px) rotate(-9deg)';
-                                        if (window.innerWidth >= 768) transform = 'translate(-50%, -50%) translateX(-180px) translateY(30px) rotate(-9deg)';
+                                        // Left book - responsive positioning (smaller on mobile)
+                                        transform = 'translate(-50%, -50%) translateX(-80px) translateY(20px) rotate(-9deg)';
+                                        if (window.innerWidth >= 640) transform = 'translate(-50%, -50%) translateX(-120px) translateY(25px) rotate(-9deg)';
+                                        if (window.innerWidth >= 768) transform = 'translate(-50%, -50%) translateX(-150px) translateY(30px) rotate(-9deg)';
                                         zIndex = isCenter ? 40 : 15;
                                         scale = isCenter ? 1.05 : 0.85;
                                     } else if (idx === 1) {
@@ -156,8 +156,10 @@ export default function Hero() {
                                         zIndex = isCenter ? 50 : 30;
                                         scale = isCenter ? 1.25 : 1.02;
                                     } else if (idx === 2) {
-                                        // Right book - slightly behind, rotated right
-                                        transform = 'translate(-50%, -50%) translateX(180px) translateY(40px) rotate(9deg)';
+                                        // Right book - slightly behind, rotated right (smaller on mobile)
+                                        transform = 'translate(-50%, -50%) translateX(80px) translateY(40px) rotate(9deg)';
+                                        if (window.innerWidth >= 640) transform = 'translate(-50%, -50%) translateX(120px) translateY(40px) rotate(9deg)';
+                                        if (window.innerWidth >= 768) transform = 'translate(-50%, -50%) translateX(180px) translateY(40px) rotate(9deg)';
                                         zIndex = isCenter ? 40 : 15;
                                         scale = isCenter ? 1.05 : 0.88;
                                     }
@@ -180,11 +182,11 @@ export default function Hero() {
                                                 <img
                                                     src={book.image}
                                                     alt={book.title}
-                                                    className={`w-[200px] h-[300px] md:w-[260px] md:h-[400px] rounded-lg object-cover`}
+                                                    className={`w-[120px] h-[180px] sm:w-[160px] sm:h-[240px] md:w-[200px] md:h-[300px] lg:w-[260px] lg:h-[400px] rounded-lg object-cover`}
                                                     onError={(e) => {
                                                         // Fallback to a styled placeholder sized like the image
                                                         e.target.outerHTML = `
-                                  <div class="w-[200px] h-[300px] md:w-[260px] md:h-[400px] rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                  <div class="w-[120px] h-[180px] sm:w-[160px] sm:h-[240px] md:w-[200px] md:h-[300px] lg:w-[260px] lg:h-[400px] rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                                     <span class="text-gray-500 text-sm font-medium">Book Cover</span>
                                   </div>
                                 `;

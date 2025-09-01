@@ -106,29 +106,29 @@ export default function ProductSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#e2f4d7] via-[#d6f5bf] to-[#c9ebc9] py-fluid">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#e2f4d7] via-[#d6f5bf] to-[#c9ebc9] py-20">
       {/* Responsive floating decorative elements */}
       <div className="absolute top-4 right-4 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 rounded-full bg-[#7bce47] opacity-20 floating-animation"></div>
       <div className="absolute bottom-8 left-8 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full bg-[#91e2ce] opacity-30 floating-animation-delayed"></div>
       <div className="absolute top-1/2 right-1/4 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full bg-[#58a12b] opacity-25 floating-animation"></div>
 
-      <div className="container mx-auto px-fluid relative z-10">
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section - Responsive Typography and Spacing */}
-        <div className={`mt-2 text-center transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '80ms' }}>
-          <h2 className="text-responsive-3xl sm:text-responsive-4xl md:text-responsive-5xl lg:text-responsive-6xl font-extrabold text-neutral-900 leading-tight">
+        <div className={`text-center transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '80ms' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-900 leading-tight">
             Browse by <span className="text-gradient">Category</span>
           </h2>
-          <p className="mt-2 sm:mt-2 md:mt-2 text-responsive-sm sm:text-responsive-base md:text-responsive-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
             Skip the noise. Jump straight into the topics you love.
           </p>
 
           {/* Responsive Category Pills */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mt-6 sm:mt-8 md:mt-10 px-4">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap mt-10 sm:mt-12 md:mt-16 px-4">
             {CATEGORIES.map((c, i) => (
               <Link 
                 key={c.id} 
                 to={`/products?category=${encodeURIComponent(c.id)}`} 
-                className={`pill-fill px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-full bg-white border border-[#91e2ce] text-responsive-xs sm:text-responsive-sm md:text-responsive-base font-semibold transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-md touch-target`} 
+                className={`pill-fill px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 rounded-full bg-white border border-[#91e2ce] text-sm sm:text-base md:text-lg font-semibold transform transition-all duration-300 ease-out hover:scale-105 hover:shadow-md touch-target`} 
                 style={{ transitionDelay: `${120 + i * 40}ms` }}
               >
                 {c.name}
@@ -138,14 +138,14 @@ export default function ProductSection() {
         </div>
 
         {/* Trending Section */}
-        <div className="mt-8 sm:mt-4 md:mt-6 lg:mt-10">
-          <div className="flex items-center justify-between mb-6 sm:mb-8 md:mb-10">
-            <h3 className="text-responsive-xl sm:text-responsive-2xl md:text-responsive-3xl font-bold text-neutral-900">
+        <div className="mt-24 sm:mt-28 md:mt-32 lg:mt-36">
+          <div className="flex items-center justify-between mb-10 sm:mb-12 md:mb-16">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900">
               Trending <span className="text-gradient">Now</span>
             </h3>
             <Link 
               to="/products" 
-              className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-responsive-sm sm:text-responsive-base hover:underline"
+              className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-base sm:text-lg md:text-xl hover:underline"
             >
               See All
             </Link>
@@ -155,7 +155,7 @@ export default function ProductSection() {
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
               <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-6">
+                <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 py-2 px-2 sm:px-4 md:px-6">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (
@@ -188,14 +188,14 @@ export default function ProductSection() {
         </div>
 
         {/* Favorites Section */}
-        <div className="mt-8 sm:mt-4 md:mt-6 lg:mt-10">
-          <div className="flex items-center justify-between mb-6 sm:mb-8 md:mb-10">
-            <h3 className="text-responsive-xl sm:text-responsive-2xl md:text-responsive-3xl font-bold text-neutral-900">
+        <div className="mt-28 sm:mt-32 md:mt-36 lg:mt-40">
+          <div className="flex items-center justify-between mb-10 sm:mb-12 md:mb-16">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900">
               Geek's <span className="text-gradient">Favorite</span>
             </h3>
             <Link 
-              to="/products?category=python" 
-              className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-responsive-sm sm:text-responsive-base hover:underline"
+              to="/products" 
+              className="text-[#58a12b] font-semibold hover:text-[#7bce47] transition-colors duration-300 text-base sm:text-lg md:text-xl hover:underline"
             >
               See All
             </Link>
@@ -205,7 +205,7 @@ export default function ProductSection() {
           <div className={`transition-all duration-700 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '240ms' }}>
             <div className="relative">
               <div className="overflow-x-auto scroll-smooth hide-scrollbar">
-                <div className="flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-6">
+                <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 py-2 px-2 sm:px-4 md:px-6">
                   {loading ? (
                     // Responsive skeleton grid
                     Array.from({ length: 8 }, (_, idx) => (

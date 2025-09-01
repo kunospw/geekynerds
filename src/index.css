@@ -138,6 +138,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -518,4 +519,127 @@ body {
     font-size: 0.95rem;
     line-height: 1.3;
   }
+}
+
+/* Fix mobile spacing issues */
+@media (max-width: 768px) {
+  /* Ensure proper spacing between sections on mobile */
+  section {
+    margin-bottom: 0 !important;
+  }
+  
+  /* Force proper vertical spacing on mobile */
+  .py-20 {
+    padding-top: 5rem !important; /* 80px */
+    padding-bottom: 5rem !important; /* 80px */
+  }
+  
+  /* Ensure category pills have proper spacing */
+  .pill-fill {
+    margin: 0.25rem;
+  }
+  
+  /* Better mobile typography */
+  h2 {
+    font-size: 1.875rem !important; /* text-3xl */
+    line-height: 2.25rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important; /* text-2xl */
+    line-height: 2rem !important;
+  }
+  
+  /* Improve mobile form spacing */
+  input, button {
+    margin: 0.25rem 0;
+  }
+}
+
+/* Ensure sections don't collapse on mobile */
+section + section {
+  margin-top: 0;
+}
+
+/* Force proper spacing for mobile */
+@media (max-width: 640px) {
+  .py-20 {
+    padding-top: 4rem !important; /* 64px */
+    padding-bottom: 4rem !important; /* 64px */
+  }
+  
+  /* Better mobile margins */
+  .mt-24 {
+    margin-top: 6rem !important; /* 96px */
+  }
+  
+  .mt-28 {
+    margin-top: 7rem !important; /* 112px */
+  }
+}
+
+/* Ensure header content doesn't overflow on mobile */
+@media (max-width: 640px) {
+  .navbar-header > div {
+    overflow: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  /* Ensure flex items can shrink properly */
+  .navbar-header > div > * {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  
+  /* Force header container width */
+  #navbar > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  /* Force header element width */
+  #navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Specific width constraints for very small screens */
+@media (max-width: 360px) {
+  .navbar-header > div {
+    max-width: 360px !important;
+  }
+  
+  #navbar > div {
+    max-width: 360px !important;
+  }
+  
+  #navbar {
+    max-width: 360px !important;
+  }
+}
+
+/* Toast animations */
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: slide-in-from-right 0.3s ease-out;
+}
+
+.slide-in-from-right-2 {
+  animation: slide-in-from-right 0.3s ease-out;
 }
